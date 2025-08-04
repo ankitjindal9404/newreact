@@ -45,8 +45,7 @@ pipeline {
                         npm --version
                         npm install
                         npm run build
-                        ls -l dist
-                        ls -l client
+                        ls -l
                     '''
                 
             }
