@@ -77,7 +77,7 @@ pipeline {
             steps {
                 sh '''
                     npm install -g vercel@44.6.4
-                    vercel --prod --token=$VERCEL_TOKEN --yes --name=cicdproject --no-cache
+                    vercel --prod --token=$VERCEL_TOKEN --yes --name=cicdproject
                 '''
             }
         }
