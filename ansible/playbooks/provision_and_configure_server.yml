@@ -84,3 +84,15 @@
         ansible_ssh_private_key_file: "{{ ec2_ssh_key_file }}"
         ansible_user: ec2-user
       when: groups["magic_hosts"] is defined and groups["magic_hosts"] | length >0
+
+    - name: Copy source code
+      become: yes
+      synchronize:
+        src: "{{ playbook_dir }}/../../"
+        dest: "/opt/reactapp"
+        delete: yes
+        recursive: yes
+        rsync_opts:
+          - "--exclude=.git"
+          - "--exclude=ansible"
+          - "--exclude=.github"
