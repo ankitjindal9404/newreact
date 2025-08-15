@@ -56,10 +56,7 @@
     - name: Install common packages
       become: yes
       package:
-        name:
-          - httpd
-          - nodejs
-          - npm
+        name: httpd
         state: present
       delegate_to: "{{ item }}"
       with_items:
