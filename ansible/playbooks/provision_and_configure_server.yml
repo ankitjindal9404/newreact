@@ -6,7 +6,7 @@
   tasks:
     - name: Adding SSH access to security group
       amazon.aws.ec2_group:
-        name: githubaction-security
+        name: default
         description: Security group for Ec2 instance
         region: us-east-1
         rules:
@@ -18,3 +18,14 @@
           - proto: all
             cidr_ip: 0.0.0.0/0
       register: security_group
+    
+    - name: Launch Ec2 instance
+      amazon.aws.ec2_instance:
+        name: Ansible-created-instance
+        key_name: ansible-master-key
+        region: us-east-1
+        instance_type: t2.micro
+        image_id: ami-0de716d6197524dd9
+        count: 1
+        security_group: "{{ security_group.group_id }}"
+      register: ec2
