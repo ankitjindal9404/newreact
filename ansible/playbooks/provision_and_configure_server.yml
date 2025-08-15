@@ -46,11 +46,11 @@
         ansible_user: ec2-user
 
     - name: Debug SSH key path
-      Debug:
+      debug:
         var: ec2_ssh_key_file
     
     - name: Debug dynamic inventory
-      Debug:
+      debug:
         var: groups['magic_hosts']
 
     - name: Install common packages
