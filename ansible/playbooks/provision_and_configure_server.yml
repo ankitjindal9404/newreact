@@ -1,0 +1,20 @@
+---
+- name: Provision Ec2 instance and install xx
+  hosts: localhost
+  gather_facts: no
+
+  tasks:
+    - name: Adding SSH access to security group
+      amazon.aws.ec2_group:
+        name: githubaction-security
+        description: Security group for Ec2 instance
+        region: us-east-1
+        rules:
+          - proto: tcp
+            from_port: 5173
+            to_port: 5173
+            cidr_ip: 0.0.0.0/0
+        rules_egress:
+          - proto: all
+            cidr_ip: 0.0.0.0/0
+      register: security_group
